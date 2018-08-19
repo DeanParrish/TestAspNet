@@ -1,0 +1,61 @@
+﻿@using Microsoft.AspNet.Identity
+@model IEnumerable<WebProject.Data.Loan>
+
+@{
+    ViewBag.Title = "People List";
+}
+
+<br />
+<h2>Search for People</h2>
+<br />
+@using (Html.BeginForm("LoanSearch", "Loans", FormMethod.Get, new { @class = "Search-form" }))
+{
+    <div class="form-group">
+    <b>@Html.Label("Search Persons: ")</b>
+    <input type="text" name="q" />
+        
+</div>
+    <div id="radioList">
+        @Html.RadioButton("SearchType", "0")
+        @Html.Label("FirstName")
+        @Html.RadioButton("SearchType", "1", true)
+        @Html.Label("LastName")
+        @Html.RadioButton("SearchType", "2")
+        @Html.Label("SSN")
+        @Html.RadioButton("SearchType", "3")
+        @Html.Label("Loan Account Number")
+    </div>
+    <div id="btnSearch">
+        <input type="submit" value="Search" id="btnSubmit" />
+    </div>
+}
+<br />
+<div id="DivGrid">
+    @{
+        var grid = new WebGrid(source: Model, canPage: true, rowsPerPage: 5, defaultSort: "ID");
+        if (Model.Count() > 0)
+        {
+            <div><strong> @ViewBag.SearchParameter</strong> | @grid.TotalRowCount @Html.Label("Record(s) found")</div>
+            @grid.GetHtml(tableStyle: "PGrid", headerStyle: "Header", alternatingRowStyle: "altRow", htmlAttributes: new { id = "DataTable" }, columns: grid.Columns(
+                 // grid.Column("ID"),
+                 grid.Column("FirstName", "FirstName"),
+                 grid.Column("LastName", "LastName"),
+                 grid.Column("SSN", "SSN"),
+                 grid.Column("LoanAccountNumber", "LoanAccountNumber"),
+                  grid.Column("LoanCompany", "LoanCompany"),
+                  grid.Column("PhoneNumber", "PhoneNumber"),
+                  grid.Column("LoanObject", "LoanObject"),
+                  grid.Column("Gender", "Gender")
+
+                 ));
+        }
+        else
+        {
+            <hr />@Html.Label("No, Record(s) not found")<hr />
+        }
+    }
+</div>
+
+        
+     
+

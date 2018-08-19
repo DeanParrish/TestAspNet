@@ -1,0 +1,56 @@
+﻿<!--This is the fact page that will answer common questions-->
+@{
+    ViewBag.Title = "FAQ Page";
+}
+
+<h3>FAQ</h3>
+<br />
+<script language="javascript" type="text/javascript">
+function over(hoover) {
+
+    document.getElementById(hoover.id).style.display = "block";
+	}
+function out(hoover) {
+    document.getElementById(hoover.id).style.display = "none";
+	}
+
+</script>
+
+
+<a href="#" onmouseover="over(ans1)" onmouseout="out(ans1)">1) Where does my money go once I donate?</a>
+<div id="ans1" style="display:none;">
+    <ul>
+        <li>Explain where it goes it.... </li>
+    </ul>
+</div>
+<br /><br />
+<a href="#" onmouseover="over(ans2)" onmouseout="out(ans2)">2) How do I change password?</a>
+<div id="ans2" style="display:none;">
+    <ul>
+        <li>Explain how to change password</li>
+
+    </ul>
+</div>
+<br /><br />
+<a href="#" onmouseover="over(ans3)" onmouseout="out(ans3)">3) How many times can I play in a day?</a>
+<div id="ans3" style="display:none;">
+    <ul>
+        <li>Explain </li>
+
+    </ul>
+</div>
+<br /><br />
+<a href="#" onmouseover="over(ans4)" onmouseout="out(ans4)">4) Put other common questions that may show up?</a>
+<div id="ans4" style="display:none;">
+    <ul>
+        <li>Explain ...</li>
+
+    </ul>
+</div>
+<br /><br />
+    </div>
+
+
+
+
+

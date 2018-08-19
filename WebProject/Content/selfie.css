@@ -1,0 +1,307 @@
+/* COLOR SCHEME: Knot Just Nautical */
+header, section, footer, aside, nav, main, article, figure {
+ display: block;
+}
+ 
+ body { 
+	 font-family: Calibri, Helvetica, Arial, sans-serif;
+	 color: #6DBCDB;
+	 background-color: #2C3E50;
+ }
+
+header {
+	/*background-image: url("../Images/header.png");*/
+	background-repeat: no-repeat; 
+	background-position: right top; 
+	color: #FFFFFF;
+	background-color: #99e6e6;
+	border-radius: 10px 10px 0 0; /* Rounds the top edges*/
+}
+/* Changes header h1 */
+h1{
+	margin: 0;
+	Padding: 50px 10px;
+	font-size: 50pt;
+	line-height: 36pt;
+	font-weight: lighter;  
+}	
+/* Changes header h2 */
+h2{
+	margin: 0;
+	Padding: 0 10px 5px;
+	font-size: 36pt;
+	line-height: 22pt;
+	text-align: center; 
+	font-style: italic; 
+    font-weight: bold; 
+	
+}
+
+
+h3{
+	 font-size: 24pt; 
+	 font-weight: lighter; 
+     margin: 0;
+}
+
+nav {
+	color: #2C3E50;
+	background-color: #99e6e6;
+	padding: 10px 10px; 
+	 font-size: 14pt;
+	 box-shadow: 0 10px 5px -5px #6DBCDB;
+	 position: relative;
+     font-weight: bold; 
+	 	 
+}
+/*We have to create  selector called "nav a" because this will fixed the anchor issue*/
+nav a{
+	font-weight: bold;
+	 text-decoration: none; /*removes underline from the links */
+	 
+}
+
+main {
+	 z-index: 0;
+     padding: 10px;
+	color: #2C3E50;
+	background-color: #FFFFFF;
+	/* I think this is what you were talking about with picture extending to footer*/
+	overflow: auto;
+    
+}
+footer {
+	color: #000000;
+	background-color: #99e6e6;
+	margin: 0;
+	Padding: 0 5px 10px;
+	font-size: 10pt; 
+	font-style: italic; 
+	border-radius: 0 10px 10px; /* Rounds the bottom edges*/
+    padding-top: 5px;
+     padding-bottom: 5px;
+     padding-left: 10px;
+     padding-right: 10px;
+}
+footer a{
+	color: #000000;
+	background-color: #99e6e6;
+}
+
+.details{ 
+color: #2C3E50;
+background-color: #6DBCDB;
+padding: 0 5px 10px; 
+ 
+}
+
+
+.school h3{
+	margin: 0 0 0 120px;
+}
+
+.school h4{
+	font-size: 14pt; 
+	font-weight: lighter;
+	margin: 0 0 0 120px;
+}
+
+.school ul{
+	margin: 0 0 0 258px;
+}
+/*For borders.. Short hand notation .class seperated with a comma*/
+.experience, .school{
+	border-left: 10px solid #2C3E50;
+	margin: 20px;
+	padding: 10px;
+	overflow: auto;
+
+}
+/*For borders*/
+.experience, .school{
+	border-right: 1px dashed #2C3E50;
+	margin: 20px;
+	padding: 10px;
+	overflow: auto;
+
+}
+/*For borders*/
+.experience, .school{
+	border-top: 1px dashed #2C3E50;
+	margin: 20px;
+	padding: 5px;
+	overflow: auto;
+
+}
+/*For borders*/
+.experience, .school{
+	border-bottom: 1px dashed #2C3E50;
+	margin: 20px;
+	padding: 5px;
+	overflow: auto;
+
+}
+/*For borders*/
+.experience h4{
+	 font-size: 18pt;
+	 font-weight: lighter;
+	 margin: 0;
+	 
+ }
+ 
+/* This seems weird or wrong */
+ .experience .title{ 
+	  font-size: 12pt;
+	  font-style: italic; 
+	   font-weight: bold;
+       margin-bottom: 10px;
+ }
+ 
+ .experience .dates{
+	 font-size: 12pt;
+	  font-style: italic; 
+	   font-weight: bold;
+	   float: right;
+  }
+
+  .experience .description{
+	 margin: 0;
+     font-size: 11pt;
+  }
+
+   .experience .responsibilities{
+	   font-size: 10pt;
+	   -webkit-column-count: 2; /* (for Chrome and Safari */
+		 -moz-column-count: 2; /* (for Firefox */
+		  column-count: 2; /* for other browsers, including Internet Explorer */
+  }
+
+  .experience ul{
+	 font-size: 11pt;
+     margin: 0;
+  }
+  .experience{
+      padding: 5px 10px; 
+  }
+
+ 
+#wrapper{
+	width: 1000px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 100px;
+	
+}
+
+nav ul{ 
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	
+}
+ nav li{ 
+	 display: inline;
+	 margin-right: 10px;
+}
+
+ nav a:hover { 
+	  border-top: 1px dashed #2C3E50; 
+	   border-bottom: 1px dashed #2C3E50; 
+}
+ table{
+     font-size: 7pt;
+ }
+
+
+ 
+ /* new styles */
+ div.row
+{
+clear:left;
+margin:6px;
+}
+/*
+label
+{
+display: block;
+float:left;
+width:250px;
+font-weight: bold;
+}
+ textarea
+{
+width: 300px;
+display: block;
+height: 75px;
+}
+
+ select{
+ width: 300px;
+ display: block;
+ }
+
+ input{
+ display: block;
+ width: 300px;
+ margin-bottom: 10px;
+ margin-left: 150px;
+
+ }
+    */
+div.buttons
+{
+margin-left: 150px;
+margin-top: 16px;
+}
+
+div.ContactInfo {
+    display: block;
+    border-collapse: collapse;
+    width: 100%;
+    padding: 50px 0 50px;
+}
+    td, th {
+    font-size: 10pt;
+    border: 1px solid #FC4349;
+    text-align: left;
+    padding: 10px;
+}
+td:nth-child(odd) {
+    font-size: 10pt;
+    font-weight: bold;
+    background-color: #FC4349;
+
+}
+ table .text, th .text td .text {
+    border: none;
+    padding: 40px 40px 40px;
+  
+}
+
+.circular {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 104px;
+    height: 104px;
+    border-radius: 150px;
+    -webkit-border-radius: 150px;
+    -moz-border-radius: 150px;
+    background: url("../Images/user1.png") no-repeat;
+}
+
+
+
+.backgroundImage{
+    border-radius: 10px 10px 10px 0;
+    background-image: url("../Images/background01large.jpg");
+    border-image-repeat: repeat;
+    
+}
+
+
+
+
+
+
+
+

@@ -1,0 +1,78 @@
+﻿@using WebProject.Models
+@model LoanViewModel
+
+
+<!--This will allow a user to add a loan.-->
+<form method="post" action="~/Home/AddLoan" class="form-horizontal">
+
+    <h3>Want to add a loan?</h3>
+
+    @Html.ValidationSummary("", new { @class = "Text-Danger" })
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.FirstName, new { @class = "col-md-2 contro-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.FirstName, new { @class = "Form-Control" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.LastName, new { @class = "col-md-2 contro-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.LastName, new { @class = "Form-Control" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Gender, new { @class = "col-md-2 contro-label" })
+            <div class="col-md-11">
+            @Html.DropDownList("Gender", new SelectList(Enum.GetValues(typeof(Gender))),"Select Gender", new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.SSN, new { @class = "col-md-2 contro-label" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.SSN, new { @class = "Form-Control" })
+            </div>
+        </div>
+
+        <div class="form-group">
+
+            @Html.LabelFor(model => model.LoanCompany, new { @class = "col-md-2 contro-label" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.LoanCompany, new { @class = "Form-Control" })
+            </div>
+        </div>
+
+        <div class="form-group">
+
+            @Html.LabelFor(model => model.LoanCompanyEmail, new { @class = "col-md-2 contro-label" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.LoanCompanyEmail, new { @class = "Form-Control" })
+            </div>
+        </div>
+
+        <div class="form-group">
+
+            @Html.LabelFor(model => model.PhoneNumber, new { @class = "col-md-2 contro-label" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.PhoneNumber, new { @class = "Form-Control" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.LoanObject, new { @class = "col-md-2 contro-label" })
+            <div class="col-md-10">
+                @Html.DropDownList("What is the loan for:", new SelectList(Enum.GetValues(typeof(LoanObject))), "Loan Category", 
+                    new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.LoanAccountNumber, new { @class = "col-md-2 contro-label" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.LoanAccountNumber, new { @class = "Form-Control" })
+            </div>
+        </div>
+        <input type="submit" value="submit" />
+</form>

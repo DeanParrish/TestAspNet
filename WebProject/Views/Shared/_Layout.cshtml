@@ -1,0 +1,63 @@
+﻿@using Microsoft.AspNet.Identity
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Play-It-Forward</title>
+  
+    @Styles.Render("~/Content/bootstrap.css")
+    @Styles.Render("~/Content/selfie.css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body>
+
+    <div class="container body-content">
+        <header>
+            <h1>>>><b>PLAY</b> IT <u>FORWARD</u>>>> </h1>
+            <!-- <h2>@ViewBag.Title</h2>-->
+        </header>
+        <nav>         
+            <ul class="pull-right">             
+                    @Html.Partial("_LoginPartial")              
+            </ul>
+            <ul>
+                <li><a href="~/">Home</a></li>
+                @if (Request.IsAuthenticated)
+                {
+                    <li><a href="~/Loans/Index">My Current Loans</a></li>
+                }
+                <li><a href="~/Home/About">Meet Our Team</a></li>
+                <li><a href="~/Home/Contact">Contact</a></li>
+                <li><a href="~/Home/FAQPage">FAQ</a></li>
+
+
+
+                </ul>   
+        </nav>
+       
+            <main>
+                @RenderBody()
+            </main>
+       
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p> 
+            <!--Admin page needs to be updated with security. I want to have like a user role here.-->          
+             <p><a href="~/Loans/LoanSearch">Admin Login</a></p>
+        
+        </footer>
+    </div>
+
+
+              
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+        @RenderSection("scripts", required: false)
+  
+</body>
+  
+</html>
+    
