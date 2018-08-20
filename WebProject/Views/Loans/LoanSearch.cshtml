@@ -24,6 +24,8 @@
         @Html.Label("SSN")
         @Html.RadioButton("SearchType", "3")
         @Html.Label("Loan Account Number")
+        @Html.RadioButton("SearchType", "4")
+        @Html.Label("Email")
     </div>
     <div id="btnSearch">
         <input type="submit" value="Search" id="btnSubmit" />
@@ -46,6 +48,7 @@
                   grid.Column("PhoneNumber", "PhoneNumber"),
                   grid.Column("LoanObject", "LoanObject"),
                   grid.Column("Gender", "Gender")
+
 
                  ));
         }

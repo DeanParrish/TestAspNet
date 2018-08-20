@@ -44,10 +44,13 @@
        
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p> 
-            <!--Admin page needs to be updated with security. I want to have like a user role here.-->          
-             <p><a href="~/Loans/LoanSearch">Admin Login</a></p>
-        
+            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <!--Admin page will only show up for emails that are defined here. Not pretty from a programmer standpoint 
+                but it works.-->
+            @if (Request.IsAuthenticated && User.Identity.GetUserName() == "chad.stefani@gmail.com" || User.Identity.GetUserName() == "parrish.de@gmail.com")
+            {
+                <p><a href="~/Loans/LoanSearch">Admin Login</a></p>
+            }
         </footer>
     </div>
 
