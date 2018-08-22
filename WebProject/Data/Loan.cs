@@ -39,15 +39,22 @@ namespace WebProject.Data
         public string LoanAccountNumber { get; set; }
 
         [Required]
+        public double LoanAmount { get; set; }
+
+        [Required]
         public Gender Gender { get; set; }
 
         [ForeignKey("")]
         public string UserId { get; set; }
 
+        public bool isLoanComplete { get; set; }
+
+        public bool isLoanActive { get; set; }
+
 
 
         // NAVIGATION PROPERTIES
-       
+
     }
     public enum Gender
     {

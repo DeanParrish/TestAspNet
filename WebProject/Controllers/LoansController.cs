@@ -18,7 +18,7 @@ namespace WebProject.Controllers
         // GET: Loans
         public ActionResult Index()
         {
-                            
+
             var id = User.Identity.GetUserId();
             var loanList = db.Loans.Where(model => model.UserId == id);
             return View(loanList.ToList());
@@ -36,7 +36,7 @@ namespace WebProject.Controllers
                 switch (id)
                 {
                     case 0:
-                       // int iQ = int.Parse(q);
+                        // int iQ = int.Parse(q);
                         persons = persons.Where(p => p.FirstName.Contains(q));
                         searchParameter += " First Name for ' " + q + " '";
                         break;
@@ -88,13 +88,19 @@ namespace WebProject.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,FirstName,LastName,SSN,LoanCompany,LoanCompanyEmail,PhoneNumber,LoanObject,LoanAccountNumber,Gender,UserId")] Loan loan)
+        public ActionResult Create([Bind(Include = "Id,FirstName,LastName,SSN,LoanCompany,LoanCompanyEmail,PhoneNumber,LoanObject,LoanAccountNumber,LoanAmount,Gender,UserId")] Loan loan)
         {
             if (ModelState.IsValid)
             {
+                List<Loan> loans = db.Loans.Where(x=>x.isLoanActive == true).ToList();
+
                 //This allows me to keep the same value in the UserId field.
                 var userId = User.Identity.GetUserId();
                 loan.UserId = userId;
+                if (loans.Count == 0)
+                {
+                    loan.isLoanActive = true;
+                }
                 db.Loans.Add(loan);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -129,7 +135,7 @@ namespace WebProject.Controllers
             {
                 var userId = User.Identity.GetUserId();
                 loan.UserId = userId;
-                db.Entry(loan).State = EntityState.Modified;               
+                db.Entry(loan).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
