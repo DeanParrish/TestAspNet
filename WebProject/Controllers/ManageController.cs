@@ -11,6 +11,7 @@ using WebProject.Models;
 namespace WebProject.Controllers
 {
     [Authorize]
+    [AuthorizeUserFilter]
     public class ManageController : Controller
     {
         private ApplicationSignInManager _signInManager;

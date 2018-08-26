@@ -569,8 +569,8 @@ C:\Users\parri\Documents\Projects\WebProject\WebProject\bin\Microsoft.Owin.Secur
 C:\Users\parri\Documents\Projects\WebProject\WebProject\bin\Microsoft.Owin.Security.Google.xml
 C:\Users\parri\Documents\Projects\WebProject\WebProject\bin\Microsoft.Owin.Security.Twitter.xml
 C:\Users\parri\Documents\Projects\WebProject\WebProject\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
-C:\Users\parri\Documents\Projects\WebProject\WebProject\obj\Debug\WebProject.csprojAssemblyReference.cache
 C:\Users\parri\Documents\Projects\WebProject\WebProject\obj\Debug\WebProject.csproj.CoreCompileInputs.cache
 C:\Users\parri\Documents\Projects\WebProject\WebProject\obj\Debug\WebProject.csproj.CopyComplete
 C:\Users\parri\Documents\Projects\WebProject\WebProject\obj\Debug\WebProject.dll
 C:\Users\parri\Documents\Projects\WebProject\WebProject\obj\Debug\WebProject.pdb
+C:\Users\parri\Documents\Projects\WebProject\WebProject\obj\Debug\WebProject.csprojAssemblyReference.cache

@@ -11,6 +11,7 @@ using Microsoft.AspNet.Identity;
 
 namespace WebProject.Controllers
 {
+    [AuthorizeUserFilter]
     public class LoansController : Controller
     {
         private DataModel db = new DataModel();
@@ -81,6 +82,7 @@ namespace WebProject.Controllers
         public ActionResult Create()
         {
             return View();
+
         }
 
         // POST: Loans/Create
@@ -92,17 +94,25 @@ namespace WebProject.Controllers
         {
             if (ModelState.IsValid)
             {
-                List<Loan> loans = db.Loans.Where(x=>x.isLoanActive == true).ToList();
 
                 //This allows me to keep the same value in the UserId field.
                 var userId = User.Identity.GetUserId();
-                loan.UserId = userId;
-                if (loans.Count == 0)
+
+                List<Loan> loans = db.Loans.Where(x => x.UserId == userId).ToList();
+                var completedLoanCount = loans.Where(x => x.isLoanComplete == false).Count();
+                //only allow 2 loans
+                if (completedLoanCount < 2)
                 {
-                    loan.isLoanActive = true;
+                    loan.UserId = userId;
+                    loan.isLoanActive = false;
+                    db.Loans.Add(loan);
+                    db.SaveChanges();
                 }
-                db.Loans.Add(loan);
-                db.SaveChanges();
+                else
+                {
+                    TempData["LoanFailure"] = "You already have two specified loans. Please delete one and add your new loan.";
+                }
+                
                 return RedirectToAction("Index");
             }
 

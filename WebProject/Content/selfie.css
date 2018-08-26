@@ -95,6 +95,12 @@ padding: 0 5px 10px;
  
 }
 
+.loanDetailsWinner {
+    color: #2C3E50;
+    background-color: #FFDF00;
+    padding: 0 5px 10px;
+}
+
 
 .school h3{
 	margin: 0 0 0 120px;
