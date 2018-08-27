@@ -39,7 +39,7 @@ namespace WebProject.Data
 
         public int AccessFailedCount { get; set; }
 
-        public int Admin { get; set; }
+        public int? Admin { get; set; }
 
         [Required]
         [StringLength(256)]

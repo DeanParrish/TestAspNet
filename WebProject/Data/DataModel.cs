@@ -11,12 +11,12 @@ namespace WebProject.Data
             : base("name=DefaultConnection")
         {
             //This is still confusing to me. Why do i have to run one to add tables and then the other after.
-            Database.SetInitializer<DataModel>(
-                new DropCreateDatabaseIfModelChanges<DataModel>()
-               //new DropCreateDatabaseAlways<DataModel>() // This is what adds the tables to the database
-               );
-               
-         }
+            //Database.SetInitializer<DataModel>(
+            //   //new DropCreateDatabaseIfModelChanges<DataModel>()
+            //   new DropCreateDatabaseAlways<DataModel>() // This is what adds the tables to the database
+            //   );
+
+        }
 
         public virtual DbSet<AspNetRole> AspNetRoles { get; set; }
         public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; }
@@ -24,6 +24,7 @@ namespace WebProject.Data
         public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
 
         public virtual DbSet<Loan> Loans { get; set; }
+        public virtual DbSet<Donations> Donations { get; set; }
 
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

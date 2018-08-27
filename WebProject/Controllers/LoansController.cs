@@ -11,6 +11,7 @@ using Microsoft.AspNet.Identity;
 
 namespace WebProject.Controllers
 {
+    [AuthorizeUserFilter]
     public class LoansController : Controller
     {
         private DataModel db = new DataModel();
@@ -18,7 +19,7 @@ namespace WebProject.Controllers
         // GET: Loans
         public ActionResult Index()
         {
-                            
+
             var id = User.Identity.GetUserId();
             var loanList = db.Loans.Where(model => model.UserId == id);
             return View(loanList.ToList());
@@ -36,7 +37,7 @@ namespace WebProject.Controllers
                 switch (id)
                 {
                     case 0:
-                       // int iQ = int.Parse(q);
+                        // int iQ = int.Parse(q);
                         persons = persons.Where(p => p.FirstName.Contains(q));
                         searchParameter += " First Name for ' " + q + " '";
                         break;
@@ -81,6 +82,7 @@ namespace WebProject.Controllers
         public ActionResult Create()
         {
             return View();
+
         }
 
         // POST: Loans/Create
@@ -88,15 +90,29 @@ namespace WebProject.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,FirstName,LastName,SSN,LoanCompany,LoanCompanyEmail,PhoneNumber,LoanObject,LoanAccountNumber,Gender,UserId")] Loan loan)
+        public ActionResult Create([Bind(Include = "Id,FirstName,LastName,SSN,LoanCompany,LoanCompanyEmail,PhoneNumber,LoanObject,LoanAccountNumber,LoanAmount,Gender,UserId")] Loan loan)
         {
             if (ModelState.IsValid)
             {
+
                 //This allows me to keep the same value in the UserId field.
                 var userId = User.Identity.GetUserId();
-                loan.UserId = userId;
-                db.Loans.Add(loan);
-                db.SaveChanges();
+
+                List<Loan> loans = db.Loans.Where(x => x.UserId == userId).ToList();
+                var completedLoanCount = loans.Where(x => x.isLoanComplete == false).Count();
+                //only allow 2 loans
+                if (completedLoanCount < 2)
+                {
+                    loan.UserId = userId;
+                    loan.isLoanActive = false;
+                    db.Loans.Add(loan);
+                    db.SaveChanges();
+                }
+                else
+                {
+                    TempData["LoanFailure"] = "You already have two specified loans. Please delete one and add your new loan.";
+                }
+                
                 return RedirectToAction("Index");
             }
 
@@ -129,7 +145,7 @@ namespace WebProject.Controllers
             {
                 var userId = User.Identity.GetUserId();
                 loan.UserId = userId;
-                db.Entry(loan).State = EntityState.Modified;               
+                db.Entry(loan).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
