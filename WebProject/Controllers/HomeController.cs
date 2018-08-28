@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 
 namespace WebProject.Controllers
 {
+    
     public class HomeController : Controller
     {
         public ActionResult Index()
@@ -124,6 +125,7 @@ namespace WebProject.Controllers
         }
 
         [HttpPost]
+        [AuthorizeUserFilter]
         public ActionResult AddLoan(LoanViewModel c)
          {
              ViewBag.Title = "Add Loan";

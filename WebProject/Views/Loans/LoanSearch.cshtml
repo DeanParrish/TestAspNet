@@ -11,10 +11,11 @@
 @using (Html.BeginForm("LoanSearch", "Loans", FormMethod.Get, new { @class = "Search-form" }))
 {
     <div class="form-group">
-    <b>@Html.Label("Search Persons: ")</b>
+    <b>@Html.Label("Quick Search: ")</b>
     <input type="text" name="q" />
         
 </div>
+    <b>Search By:</b>
     <div id="radioList">
         @Html.RadioButton("SearchType", "0")
         @Html.Label("FirstName")
