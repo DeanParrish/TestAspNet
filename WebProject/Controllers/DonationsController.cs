@@ -63,9 +63,7 @@ namespace WebProject.Controllers
                 db.Donations.Add(donation);
                 db.SaveChanges();
 
-            }
-            var test = 3;
-            
+            }      
             TempData["DonationConfirmation"] = "Your donation was a success!";
             return RedirectToAction("Index", "Home");
             //return View(ViewBag);

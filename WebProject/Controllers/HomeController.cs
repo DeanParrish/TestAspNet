@@ -14,27 +14,27 @@ namespace WebProject.Controllers
         public ActionResult Index()
         {
             //Dean Test
-            ////DataModel db = new DataModel();
-            //using (var db = new DataModel())
-            //{
-            //    //var loan = new Loan()
-            //    //{
-            //    //    FirstName = "Dean",
-            //    //    LastName = "Parrish",
-            //    //    LoanAccountNumber = "354354",
-            //    //    LoanCompany = "company",
-            //    //    LoanCompanyEmail = "email",
-            //    //    LoanAmount = 1205.23,
-            //    //    LoanObject = Data.LoanObject.Hospital,
-            //    //    Gender = Data.Gender.Male,
-            //    //    PhoneNumber = "7065514180",
-            //    //    SSN = "",
-            //    //    UserId = User.Identity.GetUserId()
+            //DataModel db = new DataModel();
+            using (var db = new DataModel())
+            {
+                var loan = new Loan()
+                {
+                    FirstName = "Dean",
+                    LastName = "Parrish",
+                    LoanAccountNumber = "354354",
+                    LoanCompany = "company",
+                    LoanCompanyEmail = "email",
+                    LoanAmount = 1205.23,
+                    LoanObject = Data.LoanObject.Hospital,
+                    Gender = Data.Gender.Male,
+                    PhoneNumber = "7065514180",
+                    SSN = "",
+                    UserId = User.Identity.GetUserId()
 
-            //    //};
-            //    //db.Loans.Add(loan);
-            //    //db.SaveChanges();
-            //}
+                };
+                db.Loans.Add(loan);
+                db.SaveChanges();
+            }
             return View();
         }
 

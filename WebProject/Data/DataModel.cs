@@ -12,8 +12,8 @@ namespace WebProject.Data
         {
             //This is still confusing to me. Why do i have to run one to add tables and then the other after.
             //Database.SetInitializer<DataModel>(
-            //   //new DropCreateDatabaseIfModelChanges<DataModel>()
-            //   new DropCreateDatabaseAlways<DataModel>() // This is what adds the tables to the database
+            //  //new DropCreateDatabaseIfModelChanges<DataModel>()
+            //  new DropCreateDatabaseAlways<DataModel>() // This is what adds the tables to the database
             //   );
 
         }
