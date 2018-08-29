@@ -215,6 +215,7 @@
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ContactViewModels.cs" />
+    <Compile Include="Models\EmailFormModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\LoanListViewModel.cs" />
     <Compile Include="Models\LoanViewModel.cs" />
@@ -302,6 +303,7 @@
     <Content Include="Views\Loans\Index.cshtml" />
     <Content Include="Views\Loans\LoanSearch.cshtml" />
     <Content Include="Views\Donations\Index.cshtml" />
+    <Content Include="Views\Home\Sent.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
