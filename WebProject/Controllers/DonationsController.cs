@@ -37,8 +37,10 @@ namespace WebProject.Controllers
                     TempData["Winner"] = "Congratulations you're a winner!";
                     activeLoan.isLoanComplete = true;
                     activeLoan.isLoanActive = false;
+                    db.SaveChanges();
+
                     var userId = User.Identity.GetUserId();
-                    Loan newActiveLoan = db.Loans.Where(x => x.UserId == userId).FirstOrDefault();
+                    Loan newActiveLoan = db.Loans.Where(x => x.UserId == userId && x.isLoanActive == false && x.isLoanComplete == false).FirstOrDefault();
                     if (newActiveLoan != null)
                     {
                         newActiveLoan.isLoanActive = true;                        
