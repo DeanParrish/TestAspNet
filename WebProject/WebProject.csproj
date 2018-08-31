@@ -301,7 +301,7 @@
     <Content Include="Views\Loans\Edit.cshtml" />
     <Content Include="Views\Loans\Index.cshtml" />
     <Content Include="Views\Loans\LoanSearch.cshtml" />
-    <Content Include="Views\Donations\Index.cshtml" />
+    <Content Include="Views\Donations\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
