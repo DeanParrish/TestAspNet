@@ -48,11 +48,14 @@ namespace WebProject.Controllers
                 }
 
                 //completed loan
-                if ((totalDonations += model.Amount) >= activeLoan.LoanAmount)
+                if ((totalDonations+=1) >= activeLoan.LoanAmount)
                 {
                     TempData["Winner"] = "Congratulations you're a winner!";
                     activeLoan.isLoanComplete = true;
                     activeLoan.isLoanActive = false;
+                    activeLoan.isLoanPrimary = false;
+                    db.SaveChanges();
+
                     var userId = User.Identity.GetUserId();
                     Loan newActiveLoan = db.Loans.Where(x => x.UserId == userId).FirstOrDefault();
                     if (newActiveLoan != null)
@@ -86,6 +89,21 @@ namespace WebProject.Controllers
                         }
                     
 
+                    Loan newActiveLoan = db.Loans.Where(x => x.UserId == userId && x.isLoanActive == false && x.isLoanComplete == false && x.isLoanPrimary == true).FirstOrDefault();
+                    if (newActiveLoan != null)
+                    {
+                        newActiveLoan.isLoanActive = true;
+                    }
+                    else//no primary
+                    {
+                        TempData["Winner"] = "Congratulations you're a winner! You had no primary loan, so we chose your first loan for you!";
+                        newActiveLoan = db.Loans.Where(x => x.UserId == userId && x.isLoanActive == false && x.isLoanComplete == false).FirstOrDefault();
+                        if (newActiveLoan != null)
+                        {
+                            newActiveLoan.isLoanActive = true;
+                        }
+                    }
+
                     db.SaveChanges();
                 }
                 else
@@ -106,7 +124,6 @@ namespace WebProject.Controllers
                 db.SaveChanges();
 
             }
-           // var test = 3;
             
             TempData["DonationConfirmation"] = "Your donation was a success!";
             return RedirectToAction("Index", "Home");
