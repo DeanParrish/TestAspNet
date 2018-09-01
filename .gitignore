@@ -1,2 +1,6 @@
 /WebProject/App_Data
 .vs/
+/WebProject/obj
+/WebProject/bin
+/WebProject.csproj
+/WebProject.csproj.user
