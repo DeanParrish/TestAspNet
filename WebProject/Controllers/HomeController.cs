@@ -75,7 +75,7 @@ namespace WebProject.Controllers
                 var message = new MailMessage();
                 message.To.Add(new MailAddress("playitfor@gmail.com"));  // replace with valid value 
                 message.From = new MailAddress("playitfor@gmail.com");  // replace with valid value
-                message.Subject = "Your email subject";
+                message.Subject = "Contact form submission";
                 message.Body = string.Format(body, model.FromName, model.FromEmail, model.Message);
                 message.IsBodyHtml = true;
 
