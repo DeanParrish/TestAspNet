@@ -16,8 +16,6 @@ namespace WebProject.Data
         [Required]
         public string LastName { get; set; }
 
-        public string SSN { get; set; } 
-
         [Required]
         [MaxLength(100)]
         public string LoanCompany { get; set; }
@@ -50,6 +48,7 @@ namespace WebProject.Data
         public bool isLoanComplete { get; set; }
 
         public bool isLoanActive { get; set; }
+        public bool isLoanPrimary { get; set; }
 
 
 

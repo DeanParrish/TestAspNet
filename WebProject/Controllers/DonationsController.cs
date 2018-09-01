@@ -17,16 +17,27 @@ namespace WebProject.Controllers
     public class DonationsController : Controller
     {
         // GET: Donations
-        public ActionResult Index()
+        public ActionResult Create()
         {
             return View();
         }
 
         [HttpPost]
-        public ActionResult Index(Donations model)
+        public ActionResult Create(Donations model)
         {
             using (DataModel db = new DataModel())
             {
+                var id = User.Identity.GetUserId();
+                if (id != null)
+                {
+                    int userLoanCount = db.Loans.Where(x => x.UserId == id).Count();
+                    if (userLoanCount == 0)
+                    {
+                        TempData["DonationConfirmation"] = "Your donation failed. You must add a loan before you donate!";
+                        return RedirectToAction("Index", "Home");
+                    }
+                }
+                
                 Loan activeLoan = db.Loans.Where(x => x.isLoanActive == true).FirstOrDefault();
                 List<Donations> donationsTowardLoan = db.Donations.Where(x => x.AppliedLoanId == activeLoan.Id).ToList();
                 double totalDonations = 0;
@@ -37,42 +48,17 @@ namespace WebProject.Controllers
                 }
 
                 //completed loan
-                if ((totalDonations += model.Amount) >= activeLoan.LoanAmount)
+                if ((totalDonations+=model.Amount) >= activeLoan.LoanAmount)
                 {
                     TempData["Winner"] = "Congratulations you're a winner!";
-
-                    //This is where it will send an email if user won. 
-                    var mess = "This person won on " + DateTime.Now;
-                    var body = "<p>Email From: {0} </p> <p> {1})</p> <p>Message: Stuff that may be rev.</p><p>{2}</p>";
-                    var message = new MailMessage();
-                        message.To.Add(new MailAddress("playitfor@gmail.com"));   
-                        message.From = new MailAddress("playitfor@gmail.com");  
-                        message.Subject = "Winner";
-                        message.Body = string.Format(body, User.Identity.GetUserName(), mess, " ");
-                        message.IsBodyHtml = true;
-
-                        using (var smtp = new SmtpClient())
-                        {
-                            var credential = new NetworkCredential
-                            {
-                                UserName = "playitfor@gmail.com",  
-                                Password = "DeanandChad123!"  
-                            };
-                            smtp.Credentials = credential;
-                            smtp.Host = "smtp.gmail.com";
-                            smtp.Port = 587;
-                            smtp.EnableSsl = true;
-                             smtp.Send(message);                          
-                        }
-
-                activeLoan.isLoanComplete = true;
-                activeLoan.isLoanActive = false;
-                var userId = User.Identity.GetUserId();
-                Loan newActiveLoan = db.Loans.Where(x => x.UserId == userId).FirstOrDefault();
-                if (newActiveLoan != null)
-                {
-                    newActiveLoan.isLoanActive = true;
-                }
+                    activeLoan.isLoanComplete = true;
+                    activeLoan.isLoanActive = false;
+                    var userId = User.Identity.GetUserId();
+                    Loan newActiveLoan = db.Loans.Where(x => x.UserId == userId).FirstOrDefault();
+                    if (newActiveLoan != null)
+                    {
+                        newActiveLoan.isLoanActive = true;                        
+                    }
 
                 db.SaveChanges();
             } 
@@ -83,7 +69,7 @@ namespace WebProject.Controllers
 
                 var donation = new Donations()
                 {
-                    Amount = model.Amount,
+                    Amount = 1,
                     ConfirmationId = "Confirmation Static",
                     TimeSubmitted = DateTime.Now,
                     UserId = User.Identity.GetUserId(),
@@ -93,7 +79,9 @@ namespace WebProject.Controllers
                 db.Donations.Add(donation);
                 db.SaveChanges();
 
-            }      
+            }
+            var test = 3;
+            
             TempData["DonationConfirmation"] = "Your donation was a success!";
             return RedirectToAction("Index", "Home");
             //return View(ViewBag);

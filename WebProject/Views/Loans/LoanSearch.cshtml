@@ -21,8 +21,6 @@
         @Html.Label("FirstName")
         @Html.RadioButton("SearchType", "1", true)
         @Html.Label("LastName")
-        @Html.RadioButton("SearchType", "2")
-        @Html.Label("SSN")
         @Html.RadioButton("SearchType", "3")
         @Html.Label("Loan Account Number")
         @Html.RadioButton("SearchType", "4")
@@ -43,9 +41,10 @@
                  // grid.Column("ID"),
                  grid.Column("FirstName", "FirstName"),
                  grid.Column("LastName", "LastName"),
-                 grid.Column("SSN", "SSN"),
+                 //grid.Column("SSN", "SSN"),
                  grid.Column("LoanAccountNumber", "LoanAccountNumber"),
                   grid.Column("LoanCompany", "LoanCompany"),
+                  grid.Column("isLoanPrimary", "isLoanPrimary"),
                   grid.Column("PhoneNumber", "PhoneNumber"),
                   grid.Column("LoanObject", "LoanObject"),
                   grid.Column("LoanCompanyEmail", "LoanCompanyEmail"),

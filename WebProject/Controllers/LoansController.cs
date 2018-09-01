@@ -21,7 +21,7 @@ namespace WebProject.Controllers
         {
 
             var id = User.Identity.GetUserId();
-            var loanList = db.Loans.Where(model => model.UserId == id);
+            var loanList = db.Loans.Where(model => model.UserId == id).OrderBy(x=>x.isLoanPrimary);
             return View(loanList.ToList());
         }
 
@@ -44,10 +44,6 @@ namespace WebProject.Controllers
                     case 1:
                         persons = persons.Where(p => p.LastName.Contains(q));
                         searchParameter += " Last Name for ' " + q + " '";
-                        break;
-                    case 2:
-                        persons = persons.Where(p => p.SSN.Equals(q));
-                        searchParameter += " SSN for ' " + q + "'";
                         break;
                     case 3:
                         persons = persons.Where(p => p.LoanAccountNumber.StartsWith(q));
@@ -81,6 +77,15 @@ namespace WebProject.Controllers
         // GET: Loans/Create
         public ActionResult Create()
         {
+            var userId = User.Identity.GetUserId();
+            using (var db = new DataModel())
+            {
+                var hasPrimaryLoan = db.Loans.Where(x => x.UserId == userId && x.isLoanPrimary == true).FirstOrDefault();
+                if (hasPrimaryLoan != null)
+                {
+                    TempData["hasPrimary"] = true;
+                }
+            }
             return View();
 
         }
@@ -90,7 +95,7 @@ namespace WebProject.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,FirstName,LastName,SSN,LoanCompany,LoanCompanyEmail,PhoneNumber,LoanObject,LoanAccountNumber,LoanAmount,Gender,UserId")] Loan loan)
+        public ActionResult Create([Bind(Include = "Id,FirstName,LastName,LoanCompany,LoanCompanyEmail,isLoanPrimary,PhoneNumber,LoanObject,LoanAccountNumber,LoanAmount,Gender,UserId")] Loan loan)
         {
             if (ModelState.IsValid)
             {
@@ -100,8 +105,9 @@ namespace WebProject.Controllers
 
                 List<Loan> loans = db.Loans.Where(x => x.UserId == userId).ToList();
                 var completedLoanCount = loans.Where(x => x.isLoanComplete == false).Count();
+                var hasPrimary = loans.Where(x => x.isLoanPrimary == true).FirstOrDefault();
                 //only allow 2 loans
-                if (completedLoanCount < 2)
+                if (completedLoanCount < 2 && hasPrimary == null)
                 {
                     loan.UserId = userId;
                     loan.isLoanActive = false;
@@ -110,7 +116,15 @@ namespace WebProject.Controllers
                 }
                 else
                 {
-                    TempData["LoanFailure"] = "You already have two specified loans. Please delete one and add your new loan.";
+                    if (hasPrimary != null)
+                    {
+                        TempData["LoanFailure"] = "You already have a specified primary loan. You may only have one primary loan.";
+                    }
+                    else
+                    {
+                        TempData["LoanFailure"] = "You already have two specified loans. Please delete one and add your new loan.";
+                    }
+                    
                 }
                 
                 return RedirectToAction("Index");
