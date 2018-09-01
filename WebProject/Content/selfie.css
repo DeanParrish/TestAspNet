@@ -299,7 +299,7 @@ td:nth-child(odd) {
 
 .backgroundImage{
     border-radius: 10px 10px 10px 0;
-    background-image: url("../Images/background01large.jpg");
+    /*background-image: url("../Images/background01large.jpg");*/
     border-image-repeat: repeat;
     
 }

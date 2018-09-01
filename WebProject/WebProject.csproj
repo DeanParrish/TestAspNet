@@ -234,6 +234,8 @@
     <Content Include="Images\background01large.jpg" />
     <Content Include="Images\bitmap-3x_2_orig.png" />
     <Content Include="Images\bitmap2-3x_2_orig.png" />
+    <Content Include="Images\Chaddyq.jpg" />
+    <Content Include="Images\DeannyWeenie1.jpg" />
     <Content Include="Images\header.png" />
     <Content Include="Images\myfamily.jpg" />
     <Content Include="Images\user1.png" />
