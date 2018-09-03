@@ -60,7 +60,34 @@ namespace WebProject.Controllers
                         newActiveLoan.isLoanActive = true;                        
                     }
 
-                db.SaveChanges();
+                    if (ModelState.IsValid)
+                    {
+                        var body = "<p>Winner email: " + User.Identity.GetUserName() + " </p><p>Winner time stamp: {0}</p>";
+                        var message = new MailMessage();
+                        message.To.Add(new MailAddress("playitfor@gmail.com"));  // replace with valid value 
+                        message.From = new MailAddress("playitfor@gmail.com");  // replace with valid value
+                        message.Subject = "Winner";
+                        message.Body = string.Format(body, DateTime.Now);
+                        message.IsBodyHtml = true;
+
+                        //This part below can be put in the web config file if we want to do that i think.
+                        using (var smtp = new SmtpClient())
+                        {
+                            var credential = new NetworkCredential
+                            {
+                                UserName = "playitfor@gmail.com",  // replace with valid value user@outlook.com
+                                Password = "DeanandChad123!"  // replace with valid value
+                            };
+                            smtp.Credentials = credential;
+                            smtp.Host = "smtp.gmail.com";
+                            smtp.Port = 587;
+                            smtp.EnableSsl = true;
+                            smtp.Send(message);
+                            
+                        }
+                    }
+
+                    db.SaveChanges();
             } 
                 else
                 {
@@ -80,7 +107,7 @@ namespace WebProject.Controllers
                 db.SaveChanges();
 
             }
-            var test = 3;
+           // var test = 3;
             
             TempData["DonationConfirmation"] = "Your donation was a success!";
             return RedirectToAction("Index", "Home");

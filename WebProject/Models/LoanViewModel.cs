@@ -17,11 +17,6 @@ namespace WebProject.Models
         [Required(ErrorMessage = "*last name is required")]
         public string LastName { get; set; }
 
-        [Display(Name = "Social Security Number:")]
-        [StringLength(60, MinimumLength = 9)]
-        [Required(ErrorMessage = "*SSN number is required")]
-        public string SSN { get; set; }
-
         [Display(Name = "Loan Company:")]
         [Required(ErrorMessage = "*Name of loan company is required")]
         public string LoanCompany { get; set; }
@@ -42,6 +37,10 @@ namespace WebProject.Models
         [Display(Name = "Loan account number:")]
         [Required(ErrorMessage = "*Loan Account number is required")]
         public string LoanAccountNumber { get; set; }
+
+        [Display(Name = "Loan Amount:")]
+        [Required(ErrorMessage = "*Loan Amount required")]
+        public double LoanAmount { get; set; }
 
         [Required(ErrorMessage = "*Gender Required")]
         public Gender Gender{ get; set; }

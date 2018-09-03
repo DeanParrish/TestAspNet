@@ -1,4 +1,6 @@
-﻿@using WebProject.Models
+﻿@*I am not sure why this page is here??? We are not using it correct?*@
+
+@using WebProject.Models
 @model LoanViewModel
 
 
@@ -30,12 +32,6 @@
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.SSN, new { @class = "col-md-2 contro-label" })
-            <div class="col-md-10">
-                @Html.TextBoxFor(model => model.SSN, new { @class = "Form-Control" })
-            </div>
-        </div>
 
         <div class="form-group">
 
