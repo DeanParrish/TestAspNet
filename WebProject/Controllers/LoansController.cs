@@ -158,9 +158,29 @@ namespace WebProject.Controllers
             if (ModelState.IsValid)
             {
                 var userId = User.Identity.GetUserId();
-                loan.UserId = userId;
-                db.Entry(loan).State = EntityState.Modified;
-                db.SaveChanges();
+                //check to see if this was already primary/if user already has primary
+                bool isloanPrimary = db.Loans.Where(x => x.Id == loan.Id).Select(x => x.isLoanPrimary).FirstOrDefault();
+                if (isloanPrimary == false && loan.isLoanPrimary == true)//tried to make primary need to check for other primary
+                {
+                    Loan userPrimaryLoan = db.Loans.Where(x => x.UserId == userId && x.isLoanPrimary == true).FirstOrDefault();
+                    if (userPrimaryLoan != null)//already has primary
+                    {
+                        TempData["hasLoan"] = "You already have a primary loan. Please remove your existing primary loan before making this one your primary.";
+                    }
+                    else
+                    {
+                        loan.UserId = userId;
+                        db.Entry(loan).State = EntityState.Modified;
+                        db.SaveChanges();
+                    }
+                }
+                else
+                {
+                    loan.UserId = userId;
+                    db.Entry(loan).State = EntityState.Modified;
+                    db.SaveChanges();
+                }
+
                 return RedirectToAction("Index");
             }
             return View(loan);
