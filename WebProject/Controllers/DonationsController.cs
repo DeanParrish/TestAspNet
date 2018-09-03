@@ -54,7 +54,7 @@ namespace WebProject.Controllers
                     activeLoan.isLoanComplete = true;
                     activeLoan.isLoanActive = false;
                     var userId = User.Identity.GetUserId();
-                    Loan newActiveLoan = db.Loans.Where(x => x.UserId == userId).FirstOrDefault();
+                    Loan newActiveLoan = db.Loans.Where(x => x.UserId == userId && x.isLoanActive == false && x.isLoanComplete == false && x.isLoanPrimary == true).FirstOrDefault();
                     if (newActiveLoan != null)
                     {
                         newActiveLoan.isLoanActive = true;
