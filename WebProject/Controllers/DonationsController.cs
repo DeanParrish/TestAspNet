@@ -37,7 +37,7 @@ namespace WebProject.Controllers
                         return RedirectToAction("Index", "Home");
                     }
                 }
-                
+
                 Loan activeLoan = db.Loans.Where(x => x.isLoanActive == true).FirstOrDefault();
                 List<Donations> donationsTowardLoan = db.Donations.Where(x => x.AppliedLoanId == activeLoan.Id).ToList();
                 double totalDonations = 0;
@@ -48,7 +48,7 @@ namespace WebProject.Controllers
                 }
 
                 //completed loan
-                if ((totalDonations+=model.Amount) >= activeLoan.LoanAmount)
+                if ((totalDonations += model.Amount) >= activeLoan.LoanAmount)
                 {
                     TempData["Winner"] = "Congratulations you're a winner!";
                     activeLoan.isLoanComplete = true;
@@ -57,11 +57,10 @@ namespace WebProject.Controllers
                     Loan newActiveLoan = db.Loans.Where(x => x.UserId == userId).FirstOrDefault();
                     if (newActiveLoan != null)
                     {
-                        newActiveLoan.isLoanActive = true;                        
+                        newActiveLoan.isLoanActive = true;
                     }
 
-                    if (ModelState.IsValid)
-                    {
+                   
                         var body = "<p>Winner email: " + User.Identity.GetUserName() + " </p><p>Winner time stamp: {0}</p>";
                         var message = new MailMessage();
                         message.To.Add(new MailAddress("playitfor@gmail.com"));  // replace with valid value 
@@ -83,12 +82,12 @@ namespace WebProject.Controllers
                             smtp.Port = 587;
                             smtp.EnableSsl = true;
                             smtp.Send(message);
-                            
+
                         }
-                    }
+                    
 
                     db.SaveChanges();
-            } 
+                }
                 else
                 {
                     TempData["Winner"] = "Unfortunately this isn't your time! Try again!";
