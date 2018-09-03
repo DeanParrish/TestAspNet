@@ -10,6 +10,10 @@
 {
     <h3>@TempData["LoanFailure"]</h3>
 }
+@if (TempData["hasLoan"] != null)
+{
+    <h3>@TempData["hasLoan"]</h3>
+}
 
 @if (Request.IsAuthenticated)
 {
@@ -18,52 +22,52 @@
     foreach (var CurrentLoans in Model)
     {
 
-    <div class="school">
-        @if (CurrentLoans.isLoanActive == false)
-        {
-        <div class="details">
-            <b>First name:</b>@CurrentLoans.FirstName<br>
-            <b>Last Name:</b> @CurrentLoans.LastName<br>
-            <b>Loan Company:</b> @CurrentLoans.LoanCompany<br>
-            <b>Loan Company Email:</b> @CurrentLoans.LoanCompanyEmail<br>
-            <b>Primary Loan?</b> @CurrentLoans.isLoanPrimary<br>
-            <b>Loan Company phone:</b> @CurrentLoans.PhoneNumber<br>
-            <b>What is the loan for:</b> @CurrentLoans.LoanObject<br>
-            <b>Loan Account number:</b> @CurrentLoans.LoanAccountNumber<br>
-            <b>Loan Amount:</b> @CurrentLoans.LoanAmount<br>
-            <b>Gender:</b> @CurrentLoans.Gender<br><br />
-
-            @if (CurrentLoans.isLoanActive == false && CurrentLoans.isLoanComplete == false)
+        <div class="school">
+            @if (CurrentLoans.isLoanActive == false)
             {
-                @Html.ActionLink("Edit", "Edit", new { id = CurrentLoans.Id }) <span>|</span>
-                @Html.ActionLink("Details", "Details", new { id = CurrentLoans.Id }) <span>|</span>
-                @Html.ActionLink("Delete", "Delete", new { id = CurrentLoans.Id })
+                <div class="details">
+                    <b>First name:</b>@CurrentLoans.FirstName<br>
+                    <b>Last Name:</b> @CurrentLoans.LastName<br>
+                    <b>Loan Company:</b> @CurrentLoans.LoanCompany<br>
+                    <b>Loan Company Email:</b> @CurrentLoans.LoanCompanyEmail<br>
+                    <b>Primary Loan?</b> @CurrentLoans.isLoanPrimary<br>
+                    <b>Loan Company phone:</b> @CurrentLoans.PhoneNumber<br>
+                    <b>What is the loan for:</b> @CurrentLoans.LoanObject<br>
+                    <b>Loan Account number:</b> @CurrentLoans.LoanAccountNumber<br>
+                    <b>Loan Amount:</b> @CurrentLoans.LoanAmount<br>
+                    <b>Gender:</b> @CurrentLoans.Gender<br><br />
+
+                    @if (CurrentLoans.isLoanActive == false && CurrentLoans.isLoanComplete == false)
+                    {
+                        @Html.ActionLink("Edit", "Edit", new { id = CurrentLoans.Id }) <span>|</span>
+                        @Html.ActionLink("Details", "Details", new { id = CurrentLoans.Id }) <span>|</span>
+                        @Html.ActionLink("Delete", "Delete", new { id = CurrentLoans.Id })
+                    }
+
+                </div>
             }
+            else
+            {
+                <div class="loanDetailsWinner">
+                    <b>First name:</b>@CurrentLoans.FirstName<br>
+                    <b>Last Name:</b> @CurrentLoans.LastName<br>
+                    <b>Loan Company:</b> @CurrentLoans.LoanCompany<br>
+                    <b>Loan Company Email:</b> @CurrentLoans.LoanCompanyEmail<br>
+                    <b>Loan Company phone:</b> @CurrentLoans.PhoneNumber<br>
+                    <b>What is the loan for:</b> @CurrentLoans.LoanObject<br>
+                    <b>Loan Account number:</b> @CurrentLoans.LoanAccountNumber<br>
+                    <b>Gender:</b> @CurrentLoans.Gender<br><br />
 
+                    @if (CurrentLoans.isLoanActive == false && CurrentLoans.isLoanComplete == false)
+                    {
+                        @Html.ActionLink("Edit", "Edit", new { id = CurrentLoans.Id }) <span>|</span>
+                        @Html.ActionLink("Details", "Details", new { id = CurrentLoans.Id }) <span>|</span>
+                        @Html.ActionLink("Delete", "Delete", new { id = CurrentLoans.Id })
+                    }
+
+                </div>
+            }
         </div>
-        }
-        else
-        {
-            <div class="loanDetailsWinner">
-                <b>First name:</b>@CurrentLoans.FirstName<br>
-                <b>Last Name:</b> @CurrentLoans.LastName<br>
-                <b>Loan Company:</b> @CurrentLoans.LoanCompany<br>
-                <b>Loan Company Email:</b> @CurrentLoans.LoanCompanyEmail<br>
-                <b>Loan Company phone:</b> @CurrentLoans.PhoneNumber<br>
-                <b>What is the loan for:</b> @CurrentLoans.LoanObject<br>
-                <b>Loan Account number:</b> @CurrentLoans.LoanAccountNumber<br>
-                <b>Gender:</b> @CurrentLoans.Gender<br><br />
-
-                @if (CurrentLoans.isLoanActive == false && CurrentLoans.isLoanComplete == false)
-                {
-                    @Html.ActionLink("Edit", "Edit", new { id = CurrentLoans.Id }) <span>|</span>
-                    @Html.ActionLink("Details", "Details", new { id = CurrentLoans.Id }) <span>|</span>
-                    @Html.ActionLink("Delete", "Delete", new { id = CurrentLoans.Id })
-                }
-
-            </div>
-        }
-    </div>
 
     }
 

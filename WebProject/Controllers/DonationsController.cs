@@ -57,13 +57,7 @@ namespace WebProject.Controllers
                     db.SaveChanges();
 
                     var userId = User.Identity.GetUserId();
-                    Loan newActiveLoan = db.Loans.Where(x => x.UserId == userId).FirstOrDefault();
-                    if (newActiveLoan != null)
-                    {
-                        newActiveLoan.isLoanActive = true;
-                    }
-
-                   
+                  
                         var body = "<p>Winner email: " + User.Identity.GetUserName() + " </p><p>Winner time stamp: {0}</p>";
                         var message = new MailMessage();
                         message.To.Add(new MailAddress("playitfor@gmail.com"));  // replace with valid value 
