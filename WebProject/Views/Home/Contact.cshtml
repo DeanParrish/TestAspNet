@@ -7,7 +7,7 @@
 
 @model WebProject.Models.EmailFormModel
 @{
-    ViewBag.Title = "Contac Us:";
+    ViewBag.Title = "Contact Us:";
 }
 <br />
 <h2>@ViewBag.Title</h2>
@@ -52,128 +52,35 @@
 }
 
 
-<div class="ContactInfo">
-    <table>
+@*<div class="ContactInfo">
+        <table>
 
-        <tr>
-            <td>Phone:</td>
-            <td>706-306-8265</td>
-        </tr>
-        <tr>
-            <td>Email:</td>
-            <td><a href="mailto:cstefani@augusta.edu">cstefani@augusta.edu</a></td>
-        </tr>
-        <tr>
-            <td>Skype:</td>
-            <td>N/A</td>
-        </tr>
-        <tr>
-            <td>Facebook:</td>
-            <td><a href="https://www.facebook.com/lincoln.stefani" target=_blank> Chad Stefani</a></td>
-        </tr>
-        <tr>
-            <td>LinkedIn:</td>
-            <td><a href="https://www.linkedin.com/in/chadstefani" target=_blank> Chad Stefani</a></td>
-        </tr>
-        <tr>
-            <td>Twitter:</td>
-            <td>N/A</td>
-        </tr>
-    </table>
-</div>
-
-@*<form method="post" action="~/Home/Contact" class="form-horizontal">
-
-        <h3>Still need answers?</h3>
-
-        @Html.ValidationSummary("", new { @class = "Text-Danger"})
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.FullName, new { @class = "col-md-2 control-label" })
-            <div class="col-md-8">
-                @Html.TextBoxFor(model => model.FullName, new { @class = "form-control" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Email, new { @class = "col-md-2 control-label" })
-            <div class="col-md-8">
-                @Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
-            </div>
-        </div>
-
-        <div class="form-group">
-
-            @Html.LabelFor(model => model.PhoneNumber, new { @class = "col-md-2 control-label" })
-            <div class="col-md-8">
-                @Html.TextBoxFor(model => model.PhoneNumber, new { @class = "form-control" })
-            </div>
-        </div>
-
-        <div class="form-group">
-
-            @Html.LabelFor(model => model.Purpose, new { @class = "col-md-2 control-label" })
-            <div class="col-md-8">
-                @Html.DropDownList("Purpose", new SelectList(Enum.GetValues(typeof(Purpose))), "Select Purpose", new { @class = "form-control" })
-            </div>
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.Message, new { @class = "col-md-2 control-label" })
-            <div class="col-md-8">
-                @Html.TextAreaFor(model => model.Message, new { @class = "form-control" })
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-8"></div>
-            <div class="col-md-4">
-                <button type="submit" class="btn btn-info">Submit</button>
-            </div>
-            </div>
-    </form>
+            <tr>
+                <td>Phone:</td>
+                <td>706-306-8265</td>
+            </tr>
+            <tr>
+                <td>Email:</td>
+                <td><a href="mailto:cstefani@augusta.edu">cstefani@augusta.edu</a></td>
+            </tr>
+            <tr>
+                <td>Skype:</td>
+                <td>N/A</td>
+            </tr>
+            <tr>
+                <td>Facebook:</td>
+                <td><a href="https://www.facebook.com/lincoln.stefani" target=_blank> Chad Stefani</a></td>
+            </tr>
+            <tr>
+                <td>LinkedIn:</td>
+                <td><a href="https://www.linkedin.com/in/chadstefani" target=_blank> Chad Stefani</a></td>
+            </tr>
+            <tr>
+                <td>Twitter:</td>
+                <td>N/A</td>
+            </tr>
+        </table>
+    </div>*@
 
 
-
-    @using (Html.BeginForm("Contact", "Home", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-    {
-
-        <h4>Still need answers?</h4>
-        <hr />
-        @Html.ValidationSummary("", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(m => m.FullName, new { @class = "col-md-2 control-label" })
-            <div class="col-md-4">
-                @Html.TextBoxFor(m => m.FullName, new { @class = "form-control", placeholder = "Full Name" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
-            <div class="col-md-4">
-                @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "example@gmail.com" })
-            </div>
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(m => m.PhoneNumber, new { @class = "col-md-2 control-label" })
-            <div class="col-md-4">
-                @Html.PasswordFor(m => m.PhoneNumber, new { @class = "form-control", placeholder = "7062014569" })
-            </div>
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.Purpose, new { @class = "col-md-2 control-label" })
-            <div class="col-md-4">
-                @Html.DropDownList("Purpose", new SelectList(Enum.GetValues(typeof(Purpose))), "Select Purpose", new { @class = "form-control" })
-            </div>
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.Message, new { @class = "col-md-2 control-label" })
-            <div class="col-md-4">
-                @Html.TextAreaFor(model => model.Message, new { @class = "form-control" })
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" class="btn btn-info" value="submit" />
-            </div>
-        </div>
-    }*@
 

@@ -58,19 +58,13 @@ namespace WebProject.Controllers
                     activeLoan.isLoanComplete = true;
                     activeLoan.isLoanActive = false;
                     var userId = User.Identity.GetUserId();
-                    Loan newActiveLoan = db.Loans.Where(x => x.UserId == userId && x.isLoanActive == false && x.isLoanComplete == false && x.isLoanPrimary == true).FirstOrDefault();
-                    if (newActiveLoan != null)
-                    {
-                        newActiveLoan.isLoanActive = true;
-                    }
-
-
-                    var body = "<p>Winner email: " + User.Identity.GetUserName() + " </p><p>Winner time stamp: {0}</p><p>Previous winner UserId: {1}";
-                    var message = new MailMessage();
+                  
+                        var body = "<p>Winner email: " + User.Identity.GetUserName() + " </p><p>Winner time stamp: {0}</p>";
+                        var message = new MailMessage();
                         message.To.Add(new MailAddress("playitfor@gmail.com"));  // replace with valid value 
                         message.From = new MailAddress("playitfor@gmail.com");  // replace with valid value
                         message.Subject = "Winner";
-                        message.Body = string.Format(body, DateTime.Now,email.Email);
+                        message.Body = string.Format(body, DateTime.Now);
                         message.IsBodyHtml = true;
 
                         //This part below can be put in the web config file if we want to do that i think.
