@@ -658,3 +658,9 @@ C:\Users\Chad\Source\Repos\TestAspNet2\WebProject\obj\Debug\WebProject.csproj.Co
 C:\Users\Chad\Source\Repos\TestAspNet2\WebProject\obj\Debug\WebProject.csproj.CopyComplete
 C:\Users\Chad\Source\Repos\TestAspNet2\WebProject\obj\Debug\WebProject.dll
 C:\Users\Chad\Source\Repos\TestAspNet2\WebProject\obj\Debug\WebProject.pdb
+C:\Users\chadlab\Source\Repos\TestAspNet\WebProject\bin\log4net.dll
+C:\Users\chadlab\Source\Repos\TestAspNet\WebProject\bin\PayPal.dll
+C:\Users\chadlab\Source\Repos\TestAspNet\WebProject\bin\log4net.xml
+C:\Users\chadlab\Source\Repos\TestAspNet\WebProject\bin\PayPal.xml
+C:\Users\chadlab\Source\Repos\TestAspNet\WebProject\bin\AuthorizeNet.dll
+C:\Users\chadlab\Source\Repos\TestAspNet\WebProject\bin\AuthorizeNet.xml

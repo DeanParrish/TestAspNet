@@ -25,6 +25,7 @@ namespace WebProject.Controllers
         [HttpPost]
         public ActionResult Create(Donations model)
         {
+
             using (DataModel db = new DataModel())
             {
                 var id = User.Identity.GetUserId();
@@ -48,11 +49,11 @@ namespace WebProject.Controllers
                 }
 
                 //completed loan
-                if ((totalDonations += model.Amount) >= activeLoan.LoanAmount)
+                if ((totalDonations += 1) >= activeLoan.LoanAmount)
                 {
                     //This shows the previous winner userid. this will show on email to help as well. email shows current winner and previous winner
                     Loan persons = db.Loans.Where(p => p.isLoanActive == true).FirstOrDefault();
-
+                    AspNetUser email = db.AspNetUsers.Where(s => s.Id == persons.UserId).FirstOrDefault();
                     TempData["Winner"] = "Congratulations you're a winner!";
                     activeLoan.isLoanComplete = true;
                     activeLoan.isLoanActive = false;
@@ -69,7 +70,7 @@ namespace WebProject.Controllers
                         message.To.Add(new MailAddress("playitfor@gmail.com"));  // replace with valid value 
                         message.From = new MailAddress("playitfor@gmail.com");  // replace with valid value
                         message.Subject = "Winner";
-                        message.Body = string.Format(body, DateTime.Now,persons.UserId);
+                        message.Body = string.Format(body, DateTime.Now,email.Email);
                         message.IsBodyHtml = true;
 
                         //This part below can be put in the web config file if we want to do that i think.

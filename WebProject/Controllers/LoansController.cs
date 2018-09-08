@@ -45,6 +45,10 @@ namespace WebProject.Controllers
                         persons = persons.Where(p => p.LastName.Contains(q));
                         searchParameter += " Last Name for ' " + q + " '";
                         break;
+                    case 2:
+                        persons = persons.Where(p => p.LoanCompanyEmail.Contains(q));
+                        searchParameter += " Loan company email ' " + q + " '";
+                        break;
                     case 3:
                         persons = persons.Where(p => p.LoanAccountNumber.StartsWith(q));
                         searchParameter += " Loan Account number for ' " + q + "'";
@@ -153,7 +157,7 @@ namespace WebProject.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,FirstName,LastName,LoanCompany,LoanCompanyEmail,PhoneNumber,LoanObject,LoanAccountNumber,Gender")] Loan loan)
+        public ActionResult Edit([Bind(Include = "Id,FirstName,LastName,LoanCompany,LoanCompanyEmail,isLoanPrimary,PhoneNumber,LoanObject,LoanAccountNumber,Gender")] Loan loan)
         {
             if (ModelState.IsValid)
             {
