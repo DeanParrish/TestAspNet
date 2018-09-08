@@ -25,6 +25,7 @@ namespace WebProject.Controllers
         [HttpPost]
         public ActionResult Create(Donations model)
         {
+            
             using (DataModel db = new DataModel())
             {
                 var id = User.Identity.GetUserId();
@@ -122,6 +123,13 @@ namespace WebProject.Controllers
             TempData["DonationConfirmation"] = "Your donation was a success!";
             return RedirectToAction("Index", "Home");
             //return View(ViewBag);
+        }
+
+        [HttpPost]
+        public void AuthorizeNetPay(string confirmRes)//void for now
+        {
+            WebProject.Helper.AuthorizeNetPay authorizeNetPay = new Helper.AuthorizeNetPay();
+            authorizeNetPay.Pay(confirmRes);
         }
     }
 }

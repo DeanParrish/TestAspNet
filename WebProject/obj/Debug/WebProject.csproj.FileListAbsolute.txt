@@ -742,3 +742,5 @@ C:\Users\chadlab\Source\Repos\TestAspNet\WebProject\obj\Debug\WebProject.csproj.
 C:\Users\chadlab\Source\Repos\TestAspNet\WebProject\obj\Debug\WebProject.csproj.CopyComplete
 C:\Users\chadlab\Source\Repos\TestAspNet\WebProject\obj\Debug\WebProject.dll
 C:\Users\chadlab\Source\Repos\TestAspNet\WebProject\obj\Debug\WebProject.pdb
+C:\Users\parri\Documents\Projects\WebProject\WebProject\bin\AuthorizeNet.dll
+C:\Users\parri\Documents\Projects\WebProject\WebProject\bin\AuthorizeNet.xml
