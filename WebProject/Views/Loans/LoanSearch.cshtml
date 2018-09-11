@@ -11,24 +11,27 @@
 @using (Html.BeginForm("LoanSearch", "Loans", FormMethod.Get, new { @class = "Search-form" }))
 {
     <div class="form-group">
-    <b>@Html.Label("Quick Search: ")</b>
-    <input type="text" name="q" />
-        
-</div>
+        <b>@Html.Label("Quick Search: ")</b>
+        <input type="text" name="q" />
+
+    </div>
     <b>Search By:</b>
     <div id="radioList">
-        @Html.RadioButton("SearchType", "0")
-        @Html.Label("FirstName")
-        @Html.RadioButton("SearchType", "1", true)
-        @Html.Label("LastName")
-        @Html.RadioButton("SearchType", "3")
-        @Html.Label("Loan Account Number")
-        @Html.RadioButton("SearchType", "4")
-        @Html.Label("Loan Company Email")
-    </div>
+            @Html.RadioButton("SearchType", "0", "1")
+            @Html.Label("FirstName")
+            @Html.RadioButton("SearchType", "1", true)
+            @Html.Label("LastName")
+            @Html.RadioButton("SearchType", "2")
+            @Html.Label("Loan Company Email")
+            @Html.RadioButton("SearchType", "3")
+            @Html.Label("Loan Account Number")
+        </div>
+
     <div id="btnSearch">
         <input type="submit" value="Search" id="btnSubmit" />
     </div>
+
+
 }
 <br />
 <div id="DivGrid">
@@ -48,7 +51,8 @@
                   grid.Column("PhoneNumber", "PhoneNumber"),
                   grid.Column("LoanObject", "LoanObject"),
                   grid.Column("LoanCompanyEmail", "LoanCompanyEmail"),
-                  grid.Column("Gender", "Gender")
+                  grid.Column("Gender", "Gender"),
+                  grid.Column("LoanAmount", "LoanAmount")
 
 
                  ));
@@ -60,6 +64,6 @@
     }
 </div>
 
-        
-     
+
+
 

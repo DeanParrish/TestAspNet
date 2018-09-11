@@ -25,6 +25,7 @@ namespace WebProject.Controllers
         [HttpPost]
         public ActionResult Create(Donations model)
         {
+
             using (DataModel db = new DataModel())
             {
                 var id = User.Identity.GetUserId();
@@ -52,24 +53,18 @@ namespace WebProject.Controllers
                 {
                     //This shows the previous winner userid. this will show on email to help as well. email shows current winner and previous winner
                     Loan persons = db.Loans.Where(p => p.isLoanActive == true).FirstOrDefault();
-                    AspNetUser personsEmail = db.AspNetUsers.Where(p => p.Id == persons.UserId).FirstOrDefault();
+                    AspNetUser email = db.AspNetUsers.Where(s => s.Id == persons.UserId).FirstOrDefault();
                     TempData["Winner"] = "Congratulations you're a winner!";
                     activeLoan.isLoanComplete = true;
                     activeLoan.isLoanActive = false;
                     var userId = User.Identity.GetUserId();
-                    Loan newActiveLoan = db.Loans.Where(x => x.UserId == userId && x.isLoanActive == false && x.isLoanComplete == false && x.isLoanPrimary == true).FirstOrDefault();
-                    if (newActiveLoan != null)
-                    {
-                        newActiveLoan.isLoanActive = true;
-                    }
-
-
-                    var body = "<p>Winner email: " + User.Identity.GetUserName() + " </p><p>Winner time stamp: {0}</p><p>Previous winner UserId: {1}";
-                    var message = new MailMessage();
+                  
+                        var body = "<p>Winner email: " + User.Identity.GetUserName() + " </p><p>Winner time stamp: {0}</p>";
+                        var message = new MailMessage();
                         message.To.Add(new MailAddress("playitfor@gmail.com"));  // replace with valid value 
                         message.From = new MailAddress("playitfor@gmail.com");  // replace with valid value
                         message.Subject = "Winner";
-                        message.Body = string.Format(body, DateTime.Now,personsEmail.Id);
+                        message.Body = string.Format(body, DateTime.Now);
                         message.IsBodyHtml = true;
 
                         //This part below can be put in the web config file if we want to do that i think.
