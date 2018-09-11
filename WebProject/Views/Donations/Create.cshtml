@@ -3,6 +3,32 @@
     ViewBag.Title = "Index";
 }
 
+<script type="text/javascript"
+        src="https://jstest.authorize.net/v3/AcceptUI.js"
+        charset="utf-8">
+</script>
+<script>
+    function responseHandler(e) {
+        console.log("response: " + JSON.stringify(e));
+
+        if (e.messages.resultCode == "Ok") {
+            $.ajax({
+                url: '/Donations/AuthorizeNetPay',
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify({ "confirmRes": e.opaqueData.dataValue}),
+                success: function () {
+                    document.getElementById('btnSubmitDonation').click();
+                },
+                error: function (jqXHR, exception) {
+                    console.log('Error message.' + exception);
+                }
+            });
+            
+        }
+    }
+</script>
+
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
@@ -10,9 +36,25 @@
 <div class="form-horizontal">
     <hr />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <form id="paymentForm"
+          method="POST"
+    action="/Donations/Create">
+        <input type="hidden" name="dataValue" id="dataValue" />
+        <input type="hidden" name="dataDescriptor" id="dataDescriptor" />
+        <button type="button"
+                class="AcceptUI btn btn-info"
+                data-billingAddressOptions='{"show":true, "required":false}'
+                data-apiLoginID="2mbpCv3j3pHa"
+                data-clientKey="2XreNUgye22c8234jgvY98PUJXkL9P2Ns5WBm3Way5sxbxX7S4dPr5CdXY33vL6s"
+                data-acceptUIFormBtnTxt="Submit"
+                data-acceptUIFormHeaderTxt="Card Information"
+                data-responseHandler="responseHandler">
+            Confirm your donation
+        </button>
+    </form>
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Confirm your donation" class="btn btn-info" />
+            <input id="btnSubmitDonation" type="submit" value="Confirm your donation" class="btn btn-info" style="display: none;" />
         </div>
     </div>
 </div>

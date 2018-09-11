@@ -19,6 +19,7 @@ namespace WebProject.Controllers
     {
         public ActionResult Index()
         {
+            var testpay = new WebProject.Helper.AuthorizeNetPay();
             //Dean Test
             //DataModel db = new DataModel();
             //using (var db = new DataModel())
