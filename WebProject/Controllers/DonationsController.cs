@@ -25,7 +25,6 @@ namespace WebProject.Controllers
         [HttpPost]
         public ActionResult Create(Donations model)
         {
-
             using (DataModel db = new DataModel())
             {
                 var id = User.Identity.GetUserId();
@@ -64,7 +63,7 @@ namespace WebProject.Controllers
                         message.To.Add(new MailAddress("playitfor@gmail.com"));  // replace with valid value 
                         message.From = new MailAddress("playitfor@gmail.com");  // replace with valid value
                         message.Subject = "Winner";
-                        message.Body = string.Format(body, DateTime.Now);
+                        message.Body = string.Format(body, DateTime.Now,persons.UserId);
                         message.IsBodyHtml = true;
 
                         //This part below can be put in the web config file if we want to do that i think.
@@ -109,6 +108,14 @@ namespace WebProject.Controllers
             TempData["DonationConfirmation"] = "Your donation was a success!";
             return RedirectToAction("Index", "Home");
             //return View(ViewBag);
+        }
+
+        [HttpPost]
+        public void AuthorizeNetPay(string confirmRes)//void for now
+        {
+            WebProject.Helper.AuthorizeNetPay authorizeNetPay = new Helper.AuthorizeNetPay();
+            authorizeNetPay.Pay(confirmRes);
+           
         }
     }
 }
