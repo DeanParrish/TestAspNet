@@ -64,7 +64,7 @@ namespace WebProject.Controllers
                         message.To.Add(new MailAddress("playitfor@gmail.com"));  // replace with valid value 
                         message.From = new MailAddress("playitfor@gmail.com");  // replace with valid value
                         message.Subject = "Winner";
-                        message.Body = string.Format(body, DateTime.Now);
+                        message.Body = string.Format(body, DateTime.Now,persons.UserId);
                         message.IsBodyHtml = true;
 
                         //This part below can be put in the web config file if we want to do that i think.
