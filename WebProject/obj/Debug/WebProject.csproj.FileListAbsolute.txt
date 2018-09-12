@@ -744,3 +744,5 @@ C:\Users\chadlab\Source\Repos\TestAspNet\WebProject\obj\Debug\WebProject.dll
 C:\Users\chadlab\Source\Repos\TestAspNet\WebProject\obj\Debug\WebProject.pdb
 C:\Users\parri\Documents\Projects\WebProject\WebProject\bin\AuthorizeNet.dll
 C:\Users\parri\Documents\Projects\WebProject\WebProject\bin\AuthorizeNet.xml
+C:\Users\chadlab\Source\Repos\TestAspNet2\WebProject\bin\AuthorizeNet.dll
+C:\Users\chadlab\Source\Repos\TestAspNet2\WebProject\bin\AuthorizeNet.xml
